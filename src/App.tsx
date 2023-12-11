@@ -6,40 +6,39 @@ import {
   useSetAppHeight,
   Text,
   useHelpScoutContext,
+  Link,
 } from "@helpscout/ui-kit";
 import { useEffect, useState } from "react";
-
 function App() {
   const appRef = useSetAppHeight();
 
-  const [userEmail, setUserEmail] = useState<string | undefined>(
-    "unknown user"
-  );
+  type Website = {
+    id: number;
+    value: string;
+  };
 
-  const [status, setStatus] = useState<string | undefined>("unknown status");
+  const [customerWebsites, setCustomerWebsites] = useState<
+    Website[] | undefined
+  >([]);
 
-  const {user, conversation} = useHelpScoutContext()
+  const { user, conversation, customer } = useHelpScoutContext();
   useEffect(() => {
-    setUserEmail(user?.email)
-    setStatus(conversation?.status)
+    setCustomerWebsites(customer?.websites);
   }, [user, conversation]);
-
-  function onClick() {
-    HelpScout.showNotification(
-      NOTIFICATION_TYPES.SUCCESS,
-      "Hello from the sidebar app"
-    );
-  }
 
   return (
     <div className="App" ref={appRef}>
       <DefaultStyle />
-      <Heading level="h1">Hi, {userEmail}</Heading>
-      <Text>The conversation is {status}</Text>
-      <br />
-      <Button size="sm" onClick={onClick}>
-        Click me
-      </Button>
+
+      <Text>
+        {customerWebsites?.map((website) => {
+          return (
+            <Link href={website.value} target="_blank">
+              {website.value}
+            </Link>
+          );
+        })}
+      </Text>
     </div>
   );
 }
