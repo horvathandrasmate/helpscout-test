@@ -38,24 +38,28 @@ function App() {
   return (
     <div className="App" ref={appRef}>
       <DefaultStyle />
-
+      <Heading>Websites</Heading>
       <Text>
-        {customerWebsites?.map((website) => {
-          return (
-            <div style={{ display: "block" }}>
-              <BsWindowFullscreen
-                style={{ display: "inline-block", paddingRight: "5px" }}
-              />
-              <Link
-                href={website.value}
-                target="_blank"
-                style={{ display: "inline-block" }}
-              >
-                {shortenLink(website.value)}
-              </Link>
-            </div>
-          );
-        })}
+        {customerWebsites?.length === 0 ? (
+          <div>No website for customer</div>
+        ) : (
+          customerWebsites?.map((website) => {
+            return (
+              <div style={{ display: "block" }}>
+                <BsWindowFullscreen
+                  style={{ display: "inline-block", paddingRight: "5px" }}
+                />
+                <Link
+                  href={website.value}
+                  target="_blank"
+                  style={{ display: "inline-block" }}
+                >
+                  {shortenLink(website.value)}
+                </Link>
+              </div>
+            );
+          })
+        )}
       </Text>
     </div>
   );
