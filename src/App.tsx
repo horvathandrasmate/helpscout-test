@@ -19,6 +19,7 @@ function App() {
   function shortenLink(link: string) {
     //return 25 characters of the link
     link = link.split("//")[1];
+    if (link.length <= 25) return link;
     return link.substring(0, 25) + "...";
   }
   const [customerWebsites, setCustomerWebsites] = useState<
