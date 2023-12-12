@@ -8,6 +8,8 @@ import {
   useHelpScoutContext,
   Link,
 } from "@helpscout/ui-kit";
+import { BsWindowFullscreen } from "react-icons/bs";
+
 import { useEffect, useState } from "react";
 function App() {
   const appRef = useSetAppHeight();
@@ -19,6 +21,8 @@ function App() {
   function shortenLink(link: string) {
     //return 25 characters of the link
     link = link.split("//")[1];
+    if (link.includes("www.")) link = link.split("www.")[1];
+
     if (link.length <= 25) return link;
     return link.substring(0, 25) + "...";
   }
@@ -38,13 +42,16 @@ function App() {
       <Text>
         {customerWebsites?.map((website) => {
           return (
-            <Link
-              href={website.value}
-              target="_blank"
-              style={{ display: "block" }}
-            >
-              {shortenLink(website.value)}
-            </Link>
+            <>
+              <BsWindowFullscreen />
+              <Link
+                href={website.value}
+                target="_blank"
+                style={{ display: "block" }}
+              >
+                {shortenLink(website.value)}
+              </Link>
+            </>
           );
         })}
       </Text>
