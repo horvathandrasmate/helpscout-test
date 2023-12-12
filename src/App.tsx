@@ -12,11 +12,16 @@ import { useEffect, useState } from "react";
 function App() {
   const appRef = useSetAppHeight();
 
+  
   type Website = {
     id: number;
     value: string;
   };
-
+  function shortenLink(link:string){
+    //return 25 characters of the link
+    link = link.split("//")[1];
+    return link.substring(0,25) + "...";
+  }
   const [customerWebsites, setCustomerWebsites] = useState<
     Website[] | undefined
   >([]);
@@ -34,7 +39,7 @@ function App() {
         {customerWebsites?.map((website) => {
           return (
             <Link href={website.value} target="_blank" style={{width:100%}}>
-              {website.value.split("//")[1]}
+              {shortenLink(website.value)}
             </Link>
           );
         })}
