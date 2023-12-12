@@ -34,7 +34,7 @@ function App() {
         {customerWebsites?.map((website) => {
           return (
             <Link href={website.value} target="_blank">
-              {website.value}
+              {website.value.split("//")[1]}
             </Link>
           );
         })}
