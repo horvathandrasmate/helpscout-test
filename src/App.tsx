@@ -42,16 +42,16 @@ function App() {
       <Text>
         {customerWebsites?.map((website) => {
           return (
-            <>
-              <BsWindowFullscreen />
+            <div style={{ display: "block" }}>
+              <BsWindowFullscreen style={{ display: "inline-block" }} />
               <Link
                 href={website.value}
                 target="_blank"
-                style={{ display: "block" }}
+                style={{ display: "inline-block" }}
               >
                 {shortenLink(website.value)}
               </Link>
-            </>
+            </div>
           );
         })}
       </Text>
