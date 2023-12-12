@@ -38,7 +38,9 @@ function App() {
   return (
     <div className="App" ref={appRef}>
       <DefaultStyle />
-      <Heading>Websites</Heading>
+      <Heading>
+        <b>Websites:</b>
+      </Heading>
       <Text>
         {customerWebsites?.length === 0 ? (
           <div>No website for customer</div>
