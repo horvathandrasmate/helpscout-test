@@ -43,7 +43,9 @@ function App() {
         {customerWebsites?.map((website) => {
           return (
             <div style={{ display: "block" }}>
-              <BsWindowFullscreen style={{ display: "inline-block" }} />
+              <BsWindowFullscreen
+                style={{ display: "inline-block", paddingRight: "5px" }}
+              />
               <Link
                 href={website.value}
                 target="_blank"
