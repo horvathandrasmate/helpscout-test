@@ -33,7 +33,7 @@ function App() {
       <Text>
         {customerWebsites?.map((website) => {
           return (
-            <Link href={website.value} target="_blank">
+            <Link href={website.value} target="_blank" style={{width:100%}}>
               {website.value.split("//")[1]}
             </Link>
           );
